@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            background-image: 
+                radial-gradient(circle at 15% 50%, #00000003 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, #ffffff03 0%, transparent 25%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, #403f3f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1.5s ease-out;
+            font-family:"Space Grotesk", serif;;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #888;
+            margin-bottom: 4rem;
+            letter-spacing: 3px;
+            animation: fadeInUp 1.5s ease-out 0.5s backwards;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            animation: fadeInUp 1.5s ease-out 1s backwards;
+        }
+
+        .countdown-item {
+            position: relative;
+            background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+            padding: 2rem;
+            border-radius: 15px;
+            min-width: 150px;
+            box-shadow: 20px 20px 60px #080808,
+                       -20px -20px 60px #1c1c1c;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, #ffffff10 0%, #ffffff01 100%);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .countdown-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 20px #ffffff40;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: #ffffff05;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(-50%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50%);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+
+            .countdown {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .countdown-item {
+                min-width: 120px;
+                padding: 1.5rem;
+            }
+
+            .countdown-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <!-- Particles will be added by JavaScript -->
+    </div>
+    
+    <div class="container">
+        <h1>Learne</h1>
+        <p class="tagline">build share collabrate</p>
+        <p   class="tagline" style="color: rgb(52, 55, 52); font-family: sans-serif; font-size: xx-large;" >we are building something awesome, stay tuned!</p>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">60</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add floating particles
+        const particlesContainer = document.querySelector('.particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 50 + 20 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Set the launch date (60 days from now)
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 60);  
+
+        function updateCountdown() {
+            const now = new Date();
+            const difference = launchDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update countdown immediately and every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
